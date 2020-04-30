@@ -6,7 +6,8 @@ const sellerschema = new Schema({
     email :String,
     contact :String,
     password :String,
-    avatar:String
+    avatar:String,
+    created : Date
  
 })
 const sellermodel = mongoose.model('seller' , sellerschema);

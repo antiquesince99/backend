@@ -4,7 +4,7 @@ const port = 3000;
 const parser = require('body-parser');
 const cors = require('cors');
 const utilRouter = require("./routes/util")
-
+const reviewRouter = require('./routes/reviewmanager')
 const userRouter = require('./routes/userManager');
 const sellerRouter = require('./routes/sellermanager');
 const productRouter = require('./routes/productmanager');
@@ -15,6 +15,7 @@ app.use(cors());
 app.use('/user', userRouter);
 app.use('/seller', sellerRouter);
 app.use('/model', productRouter);
+app.use('/review', reviewRouter);
 app.use('/util',utilRouter);
 app.get('/', (req, res) => {
     res.send('get request accepted');

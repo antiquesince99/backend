@@ -6,9 +6,10 @@ const userschema = new Schema({
     username : String,
     password : String,
     email : String,
-    avtar : String
+    avtar : String,
+    created: Date,
 })
 
 const usermodel = mongoose.model('user' , userschema);
 
-module.exports = usermodel;
+module.exports = usermodel
