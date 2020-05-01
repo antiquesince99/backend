@@ -43,6 +43,17 @@ router.get('/getall',(req,res)=>{
     .catch(err => {
         res.status(500).json(err);
     })
+
+    router.get('/getbyid/:id', (req, resp) => {
+        id = req.params.id;
+        Model.findById(id)
+        .then(data => {
+            resp.status(200).json(data)
+        })
+        .catch(err => {
+            resp.status(500).json(err);
+        })
+    })
 })
 
 module.exports = router;
