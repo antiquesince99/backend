@@ -12,6 +12,7 @@ const stripe = require("stripe")("sk_test_4UUC1EhrWC2XwOh5Y7ag4oK300raaV4B4f"); 
 
 app.use(parser.json());
 app.use(cors());
+app.use(express.static('uploads'))
 app.use('/user', userRouter);
 app.use('/seller', sellerRouter);
 app.use('/model', productRouter);
