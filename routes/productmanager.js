@@ -3,20 +3,37 @@ const Model = require('../models/product');
 const router = require('express').Router()
 const multer= require('multer');
  
-const storage=multer.diskStorage({
+const imagestorage=multer.diskStorage({
     destination: (req,file,cb)=>{
-        cb(null,'./uploads/products');
+        cb(null,'./uploads/products/images');
     },
     filename: (req,file,cb)=>{
         cb(null, file.originalname);
     }
 })
-const upload=multer({storage:storage})
-router.post('/addimg',upload.single('image'),(req,res)=>{
+
+const filestorage=multer.diskStorage({
+    destination: (req,file,cb)=>{
+        cb(null,'./uploads/products/zipfiles');
+    },
+    filename: (req,file,cb)=>{
+        cb(null, file.originalname);
+    }
+})
+
+const uploadImage=multer({storage:imagestorage})
+const uploadFile=multer({storage:filestorage})
+
+
+router.post('/addimg',uploadImage.single('image'),(req,res)=>{
     console.log(req.body);
     res.json({message:"File upload success"})
 })
  
+router.post('/addfile',uploadFile.single('file'),(req,res)=>{
+    console.log(req.body);
+    res.json({message:"File upload success"})
+})
 
 
 router.post('/add', (req, res) => {

@@ -13,11 +13,25 @@ router.post('/addreview',(req,res)=>{
         res.status(500).send(err.message);
     })
 })
- 
-router.get('/getbyhost/:hostid',(req,res)=>
+
+router.get('/getbyuser/:id',(req,res)=>
 {
-    let hostid = req.params.hostid;
-    Model.find({host: hostid})
+    let id = req.params.productid;
+    Model.find({user: id})
+    .populate('user')
+    .then((data)=>{
+        console.log(data);
+        res.status(200).json(data);
+    })
+    .catch((err)=>{
+        res.status(500).send(err.message);
+    })
+})
+
+router.get('/getbyproduct/:productid',(req,res)=>
+{
+    let productid = req.params.productid;
+    Model.find({product: productid})
     .populate('user')
     .then((data)=>{
         console.log(data);

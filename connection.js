@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost:27017/Asset3d';
+const url = 'mongodb://localhost:27017/Assets3d';
 
 mongoose.connect(url, {useNewUrlParser: true})
 .then( () => {

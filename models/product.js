@@ -9,7 +9,10 @@ const userschema = new Schema({
     size : Number,
     geometry :Number,
     vertices :Number,
-    textures : Number
+    textures : Number,
+
+    file : String,
+    image : String
 })
 
 const product = mongoose.model('model' , userschema);
