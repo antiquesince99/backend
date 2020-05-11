@@ -2,7 +2,9 @@ const Model = require('../models/product');
 
 const router = require('express').Router()
 const multer= require('multer');
- 
+const fs = require('fs');
+const unzipper = require('unzipper');
+
 const imagestorage=multer.diskStorage({
     destination: (req,file,cb)=>{
         cb(null,'./uploads/products/images');
@@ -20,6 +22,11 @@ const filestorage=multer.diskStorage({
         cb(null, file.originalname);
     }
 })
+
+const extractFile = (filepath) => {
+    fs.createReadStream('./uploads/products/zipfiles/'+filepath)
+        .pipe(unzipper.Extract({ path: './uploads/products/extracted/'+filepath }));
+}
 
 const uploadImage=multer({storage:imagestorage})
 const uploadFile=multer({storage:filestorage})
@@ -43,9 +50,11 @@ router.post('/add', (req, res) => {
 
     model.save()
     .then(data => {
+        extractFile(data.file)
         res.status(200).json(data);
     })
     .catch(err => {
+        console.error(err);
         res.status(500).json(err);
     })
 })
