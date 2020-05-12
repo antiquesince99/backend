@@ -18,6 +18,7 @@
     "mongoose": "^5.9.6",
     "multer": "^1.4.2",
     "nodemon": "^2.0.2",
-    "stripe": "^8.42.0"
+    "stripe": "^8.42.0",
+    "unzipper": "^0.10.11"
   }
 }
